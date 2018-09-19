@@ -4,7 +4,7 @@
     --purple: #401FD6;
     --text-color: #111;
     --link-color: var(--purple);
-    --background: #fff;
+    --background: #EEF1F6;
     --main-width: 40em;
 }
 
@@ -21,6 +21,7 @@ html {
 
 body {
     color: var(--text-color);
+    font-family: arial;
     font-size: 17px;
     margin: 0;
     padding: 0;
@@ -48,28 +49,38 @@ a, a:link {
     display: grid;         
     grid-template-rows: min-content min-content 1fr min-content;
     grid-template-areas:
-        "header"      
-        "nav"
-        "main"
-        "footer";
+        "header header header"
+        "nav nav nav"
+        "main main main"
+        "footer footer footer";
+    grid-template-columns:
+        [full-start] minmax(.5em, 1fr) 
+        [main-start] minmax(0, var(--main-width)) [main-end]
+        minmax(.5em, 1fr) [full-end];
     height: 100vh;
     width: 100%;
     grid-gap: 0;
 }
 
 header {
-    background: #fff;
+    background: var(--background);
     color: var(--blue);
     grid-area: header;
     padding: 1rem;
-    border-bottom: 5px solid var(--blue);
     text-align: center;
+}
+
+header img {
+    max-width: 500px;
+    width: 100%;
 }
 
 nav a, a:link, a:hover, a:visited
 {
     color: #fff;
     text-decoration: none;
+    padding: 1rem;
+    display: block;
 }
 nav a:hover
 {
@@ -82,7 +93,7 @@ nav {
     color: #fff;
     grid-area: nav;
     width: 100%;
-    padding: 1rem;
+    padding: 0;
     line-height: 1;
 }
 
@@ -97,8 +108,7 @@ nav>ul {
     display: flex;
 }
 
-nav>ul>li
-{
+nav>ul>li {
     flex: 1;
 }
 
@@ -106,23 +116,41 @@ main {
     background: var(--background);
     color: var(--text-color);
     grid-area: main;
-    padding: 1rem;
-    display: grid;
-    grid-template-columns:
-        [full-start] minmax(1em, 1fr) 
-        [main-start] minmax(0, var(--main-width)) [main-end]
-        minmax(1em, 1fr) [full-end];
+    padding: 0;
     grid-auto-rows:
         min-content;
     grid-gap: 0;
+    grid-column: full;
 }
 
 main section {
     grid-column: main;
+    padding: 1rem;
 }
 
 main section.full {
     grid-column: full;
+}
+
+main section.purple {
+    background-color: var(--purple);
+}
+
+main section.girlscode {
+    background: url("../img/background.jpg") no-repeat center center;
+    background-size: cover;
+    grid-column: full;
+    text-align: center;
+    padding: 12rem 0;
+}
+
+main section.girlscode img {
+    width: 100%;
+    max-width: 50rem;
+}
+
+main section.girlscode h2 {
+    color: #fff;
 }
 
 footer {
@@ -132,4 +160,15 @@ footer {
     text-align: center;
     width: 100%;
     line-height: 1;
+}
+
+@media only screen and (max-width: 600px)
+{
+    nav>ul {
+        flex-direction: column;
+    }
+
+    main section {
+        padding: .2rem 0rem;
+    }
 }
