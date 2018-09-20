@@ -46,10 +46,12 @@ a, a:link {
 }
 
 .container {
+    height: 100vh;
+    width: 100%;
+    /*Grid*/
     display: grid;         
     grid-template-rows: min-content min-content 1fr min-content;
     grid-template-areas:
-        "header header header"
         "nav nav nav"
         "main main main"
         "footer footer footer";
@@ -57,22 +59,7 @@ a, a:link {
         [full-start] minmax(.5em, 1fr) 
         [main-start] minmax(0, var(--main-width)) [main-end]
         minmax(.5em, 1fr) [full-end];
-    height: 100vh;
-    width: 100%;
     grid-gap: 0;
-}
-
-header {
-    background: var(--background);
-    color: var(--blue);
-    grid-area: header;
-    padding: 1rem;
-    text-align: center;
-}
-
-header img {
-    max-width: 500px;
-    width: 100%;
 }
 
 nav a, a:link, a:hover, a:visited
@@ -84,17 +71,22 @@ nav a, a:link, a:hover, a:visited
 }
 nav a:hover
 {
-    color: var(--pink);
+    color: #fff;
     background-color: var(--pink);
 }
 
 nav {
     background: var(--blue);
-    color: #fff;
-    grid-area: nav;
+    color: #fff;    
     width: 100%;
-    padding: 0;
+    padding: 0 1rem;
     line-height: 1;
+    /*Grid*/
+    grid-area: nav;
+    /*Flex*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav a:link, a:hover, a:visited {
@@ -105,18 +97,24 @@ nav>ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    /*Flex*/
     display: flex;
 }
 
 nav>ul>li {
-    flex: 1;
+    text-align: center;
+}
+
+nav img {
+    margin: 1rem;
 }
 
 main {
     background: var(--background);
-    color: var(--text-color);
-    grid-area: main;
+    color: var(--text-color);    
     padding: 0;
+    /*Grid*/
+    grid-area: main;
     grid-auto-rows:
         min-content;
     grid-gap: 0;
@@ -124,11 +122,13 @@ main {
 }
 
 main section {
-    grid-column: main;
     padding: 1rem;
+    /*Grid*/
+    grid-column: main;
 }
 
 main section.full {
+    /*Grid*/
     grid-column: full;
 }
 
@@ -139,14 +139,15 @@ main section.purple {
 main section.girlscode {
     background: url("../img/background.jpg") no-repeat center center;
     background-size: cover;
-    grid-column: full;
     text-align: center;
-    padding: 12rem 0;
+    padding: 6rem 0;
+    /*Grid*/
+    grid-column: full;
 }
 
 main section.girlscode img {
     width: 100%;
-    max-width: 50rem;
+    max-width: 400px;
 }
 
 main section.girlscode h2 {
@@ -154,18 +155,27 @@ main section.girlscode h2 {
 }
 
 footer {
-    background: var(--pink);
-    color: #000;
-    grid-area: footer;
+    background: var(--blue);
+    color: #fff;
     text-align: center;
     width: 100%;
     line-height: 1;
+    /*Grid*/
+    grid-area: footer;
 }
 
 @media only screen and (max-width: 600px)
 {
-    nav>ul {
+    nav {
+        padding: 0;
+        /*Flex*/
         flex-direction: column;
+        width: 100%;
+    }
+    nav>ul {
+        /*Flex*/
+        flex-direction: column;
+        width: 100%;
     }
 
     main section {
