@@ -49,16 +49,12 @@ a, a:link {
     height: 100vh;
     width: 100%;
     /*Grid*/
-    display: grid;         
-    grid-template-rows: min-content min-content 1fr min-content;
+    display: grid;
+    grid-template-rows: min-content 1fr min-content;
     grid-template-areas:
-        "nav nav nav"
-        "main main main"
-        "footer footer footer";
-    grid-template-columns:
-        [full-start] minmax(.5em, 1fr) 
-        [main-start] minmax(0, var(--main-width)) [main-end]
-        minmax(.5em, 1fr) [full-end];
+        "nav"
+        "main"
+        "footer";
     grid-gap: 0;
 }
 
@@ -113,23 +109,27 @@ main {
     background: var(--background);
     color: var(--text-color);    
     padding: 0;
-    /*Grid*/
-    grid-area: main;
-    grid-auto-rows:
-        min-content;
+    /*Layout Grid*/
+    grid-area: main;    
+    /*Content Grid*/
+    display: grid;
+    grid-template-columns:
+        [fullwidth-start] minmax(.5em, 1fr) 
+        [standardwidth-start] minmax(0, var(--main-width)) [standardwidth-end]
+        minmax(.5em, 1fr) [fullwidth-end];
+    grid-auto-rows: min-content;
     grid-gap: 0;
-    grid-column: full;
 }
 
 main section {
     padding: 1rem;
     /*Grid*/
-    grid-column: main;
+    grid-column: standardwidth;
 }
 
-main section.full {
+main section.fullwidth {
     /*Grid*/
-    grid-column: full;
+    grid-column: fullwidth;
 }
 
 main section.purple {
@@ -142,7 +142,7 @@ main section.girlscode {
     text-align: center;
     padding: 6rem 2rem;
     /*Grid*/
-    grid-column: full;
+    grid-column: fullwidth;
 }
 
 main section.girlscode img {
@@ -159,7 +159,9 @@ footer {
     color: #fff;
     text-align: center;
     width: 100%;
-    line-height: 1;
+    line-height: .6;
+    font-size: .8em;
+    padding: .5rem;
     /*Grid*/
     grid-area: footer;
 }
