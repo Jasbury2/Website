@@ -140,7 +140,7 @@ main section.girlscode {
     background: url("../img/background.jpg") no-repeat center center;
     background-size: cover;
     text-align: center;
-    padding: 6rem 0;
+    padding: 6rem 2rem;
     /*Grid*/
     grid-column: full;
 }
@@ -179,6 +179,9 @@ footer {
     }
 
     main section {
-        padding: .2rem 0rem;
+        padding: 2rem 1rem;
+    }
+    main section.girlscode {
+        padding: 2rem 1rem;
     }
 }
